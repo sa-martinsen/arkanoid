@@ -1,6 +1,8 @@
 import * as PIXI from 'pixi.js'
 import ShipModel from "./model/ship"
 import ShipView from "./view/ship"
+import AirModel from "./model/air"
+import AirView from "./view/air"
 
 const application = new PIXI.Application({
   width: 1920, height: 1080, backgroundColor: 0x1099bb, resolution: window.devicePixelRatio || 1,
