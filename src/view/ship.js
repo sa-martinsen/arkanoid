@@ -1,11 +1,11 @@
-import * as PIXI from 'pixi.js'
-import View from "./view"
+import * as PIXI from 'pixi.js';
+import View from './view';
+import shipImg from '../../res/ship.png';
 
 export default class Ship extends View {
-
-  constructor (scene, model) {
+  constructor(scene, model) {
     super(scene, model);
-    this.sprite = new PIXI.Sprite(PIXI.Texture.from("./res/ship.png"));
+    this.sprite = new PIXI.Sprite(PIXI.Texture.from(shipImg));
     scene.addChild(this.sprite);
   }
 
@@ -13,5 +13,4 @@ export default class Ship extends View {
     this.sprite.y = 900;
     this.sprite.x = this.model.x;
   }
-
 }
