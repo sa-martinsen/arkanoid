@@ -5,69 +5,77 @@ import AirModel from './model/air';
 import AirView from './view/air';
 import bg from '../res/background.png';
 
-const application = new PIXI.Application({
+const CREATE_APP = PIXI.Application;
+const CONTAINER = PIXI.Container;
+const SPRITE = PIXI.Sprite;
+
+const application = new CREATE_APP({
   width: window.innerWidth,
   height: window.innerHeight,
   antialias: true,
   transparent: false,
-  autoDensity: true,
   resolution: window.devicePixelRatio || 1,
 });
 
-const container = new PIXI.Container();
+const container = new CONTAINER();
+PIXI.Loader.shared.add(bg).load(setup);
 application.stage.addChild(container);
-const texture = new PIXI.Sprite(PIXI.Texture.from(bg));
-container.addChild(texture);
 
-document.body.appendChild(application.view);
+function setup() {
+  const texture = new SPRITE(PIXI.Loader.shared.resources[bg].texture);
+  container.addChild(texture);
 
-const map = [{ x: 10, y: 10 }, { x: 200, y: 10 }, { x: 400, y: 10 }, { x: 600, y: 10 }];
+  document.body.appendChild(application.view);
 
-const UPS = 50;
+  const map = [{ x: 10, y: 10 }, { x: 200, y: 10 }, { x: 400, y: 10 }, { x: 600, y: 10 }];
 
-const models = [];
+  const UPS = 50;
 
-const startttmp = window.performance.now();
+  const models = [];
 
-let worldCounter = 0;
-setInterval(function() {
-  const current = window.performance.now();
-  const count = ((current - startttmp) * UPS) / 1000 - worldCounter;
-  for (let i = 0; i < count; i++) {
-    worldCounter++;
-    models.map(model => model.update());
+  const startttmp = window.performance.now();
+
+  let worldCounter = 0;
+
+  setInterval(function() {
+    const current = window.performance.now();
+    const count = ((current - startttmp) * UPS) / 1000 - worldCounter;
+    for (let i = 0; i < count; i++) {
+      worldCounter++;
+      models.map(model => model.update());
+    }
+  }, 10);
+
+  models.push(new ShipModel());
+
+  function createModel(data) {
+    return new AirModel(data);
   }
-}, 10);
 
-models.push(new ShipModel());
+  models.push(...map.map(createModel));
 
-function createModel(data) {
-  return new AirModel(data);
-}
+  const views = [];
 
-models.push(...map.map(createModel));
-
-const views = [];
-
-function create(model) {
-  if (model instanceof ShipModel) {
-    return new ShipView(container, model);
-  } else if (model instanceof AirModel) {
-    return new AirView(container, model);
+  function create(model) {
+    if (model instanceof ShipModel) {
+      return new ShipView(container, model);
+    } else if (model instanceof AirModel) {
+      return new AirView(container, model);
+    }
   }
-}
 
-function render() {
-  requestAnimationFrame(() => {
-    models.map(model => {
-      if (!views.some(view => view.model === model)) {
-        views.push(create(model));
-      }
+  function render() {
+    requestAnimationFrame(() => {
+      models.map(model => {
+        if (!views.some(view => view.model === model)) {
+          views.push(create(model));
+        }
+      });
+
+      views.map(view => view.render());
+      render();
     });
+  }
 
-    views.map(view => view.render());
-    render();
-  });
+  requestAnimationFrame(render);
 }
-
-requestAnimationFrame(render);
