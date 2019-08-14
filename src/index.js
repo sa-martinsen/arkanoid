@@ -3,13 +3,21 @@ import ShipModel from './model/ship';
 import ShipView from './view/ship';
 import AirModel from './model/air';
 import AirView from './view/air';
+import bg from '../res/background.png';
+import shipImg from '../res/ship.svg';
 
 const application = new PIXI.Application({
-  width: 1920,
-  height: 1080,
+  width: screen.width,
+  height: screen.height,
   backgroundColor: 0x1099bb,
   resolution: window.devicePixelRatio || 1,
 });
+
+const container = new PIXI.Container();
+application.stage.addChild(container);
+const texture = new PIXI.Sprite(PIXI.Texture.from(bg));
+container.addChild(texture);
+
 document.body.appendChild(application.view);
 
 const map = [{ x: 10, y: 10 }, { x: 200, y: 10 }, { x: 400, y: 10 }, { x: 600, y: 10 }];
@@ -19,6 +27,7 @@ const UPS = 50;
 const models = [];
 
 const startttmp = window.performance.now();
+
 let worldCounter = 0;
 setInterval(function() {
   const current = window.performance.now();

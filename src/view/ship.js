@@ -1,6 +1,6 @@
 import * as PIXI from 'pixi.js';
 import View from './view';
-import shipImg from '../../res/ship.png';
+import shipImg from '../../res/ship.svg';
 
 export default class Ship extends View {
   constructor(scene, model) {
