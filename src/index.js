@@ -4,12 +4,13 @@ import ShipView from './view/ship';
 import AirModel from './model/air';
 import AirView from './view/air';
 import bg from '../res/background.png';
-import shipImg from '../res/ship.svg';
 
 const application = new PIXI.Application({
-  width: screen.width,
-  height: screen.height,
-  backgroundColor: 0x1099bb,
+  width: window.innerWidth,
+  height: window.innerHeight,
+  antialias: true,
+  transparent: false,
+  autoDensity: true,
   resolution: window.devicePixelRatio || 1,
 });
 
@@ -50,9 +51,9 @@ const views = [];
 
 function create(model) {
   if (model instanceof ShipModel) {
-    return new ShipView(application.stage, model);
+    return new ShipView(container, model);
   } else if (model instanceof AirModel) {
-    return new AirView(application.stage, model);
+    return new AirView(container, model);
   }
 }
 
