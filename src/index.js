@@ -8,6 +8,7 @@ import bg from '../res/background.png';
 const CREATE_APP = PIXI.Application;
 const CONTAINER = PIXI.Container;
 const SPRITE = PIXI.Sprite;
+const LOADER = PIXI.Loader;
 
 const application = new CREATE_APP({
   width: window.innerWidth,
@@ -18,11 +19,22 @@ const application = new CREATE_APP({
 });
 
 const container = new CONTAINER();
-PIXI.Loader.shared.add(bg).load(setup);
+LOADER.shared
+  .add({
+    name: 'bg',
+    url: bg,
+  })
+  .on('progress', loadProgressHandler)
+  .load(setup);
 application.stage.addChild(container);
 
+function loadProgressHandler(loader, resource) {
+  console.log('loading: ' + resource.url);
+  console.log('progress: ' + loader.progress + '%');
+}
+
 function setup() {
-  const texture = new SPRITE(PIXI.Loader.shared.resources[bg].texture);
+  const texture = new SPRITE(LOADER.shared.resources.bg.texture);
   container.addChild(texture);
 
   document.body.appendChild(application.view);
