@@ -2,10 +2,13 @@ import * as PIXI from 'pixi.js';
 import View from './view';
 import shipImg from '../../res/ship.svg';
 
+const SPRITE = PIXI.Sprite,
+  TEXTURE = PIXI.Texture;
+
 export default class Ship extends View {
   constructor(scene, model) {
     super(scene, model);
-    this.sprite = new PIXI.Sprite(PIXI.Texture.from(shipImg));
+    this.sprite = new SPRITE(TEXTURE.from(shipImg));
     scene.addChild(this.sprite);
   }
 

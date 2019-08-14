@@ -5,10 +5,10 @@ import AirModel from './model/air';
 import AirView from './view/air';
 import bg from '../res/background.png';
 
-const CREATE_APP = PIXI.Application;
-const CONTAINER = PIXI.Container;
-const SPRITE = PIXI.Sprite;
-const LOADER = PIXI.Loader;
+const CREATE_APP = PIXI.Application,
+  CONTAINER = PIXI.Container,
+  SPRITE = PIXI.Sprite,
+  LOADER = PIXI.Loader;
 
 const application = new CREATE_APP({
   width: window.innerWidth,
@@ -20,12 +20,10 @@ const application = new CREATE_APP({
 
 const container = new CONTAINER();
 LOADER.shared
-  .add({
-    name: 'bg',
-    url: bg,
-  })
+  .add('bg', bg)
   .on('progress', loadProgressHandler)
   .load(setup);
+
 application.stage.addChild(container);
 
 function loadProgressHandler(loader, resource) {
@@ -36,7 +34,6 @@ function loadProgressHandler(loader, resource) {
 function setup() {
   const texture = new SPRITE(LOADER.shared.resources.bg.texture);
   container.addChild(texture);
-
   document.body.appendChild(application.view);
 
   const map = [{ x: 10, y: 10 }, { x: 200, y: 10 }, { x: 400, y: 10 }, { x: 600, y: 10 }];
