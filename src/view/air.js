@@ -1,5 +1,5 @@
 import * as PIXI from 'pixi.js';
-import airImg from '../../res/air.png';
+import airImg from '../../res/air.svg';
 
 const Sprite = PIXI.Sprite,
   Texture = PIXI.Texture;
