@@ -5,12 +5,12 @@ import AirModel from './model/air';
 import AirView from './view/air';
 import bg from '../res/background.png';
 
-const CREATE_APP = PIXI.Application,
-  CONTAINER = PIXI.Container,
-  SPRITE = PIXI.Sprite,
-  LOADER = PIXI.Loader;
+const CreateApp = PIXI.Application,
+  Container = PIXI.Container,
+  Sprite = PIXI.Sprite,
+  Loader = PIXI.Loader;
 
-const application = new CREATE_APP({
+const application = new CreateApp({
   width: window.innerWidth,
   height: window.innerHeight,
   antialias: true,
@@ -18,8 +18,8 @@ const application = new CREATE_APP({
   resolution: window.devicePixelRatio || 1,
 });
 
-const container = new CONTAINER();
-LOADER.shared
+const container = new Container();
+Loader.shared
   .add('bg', bg)
   .on('progress', loadProgressHandler)
   .load(setup);
@@ -32,7 +32,7 @@ function loadProgressHandler(loader, resource) {
 }
 
 function setup() {
-  const texture = new SPRITE(LOADER.shared.resources.bg.texture);
+  const texture = new Sprite(Loader.shared.resources.bg.texture);
   container.addChild(texture);
   document.body.appendChild(application.view);
 
