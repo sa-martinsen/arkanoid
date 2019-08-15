@@ -1,11 +1,12 @@
 import * as PIXI from 'pixi.js';
-import airImg from '../../res/air.svg';
+import ballImg from '../../res/ball.svg';
 
 const Sprite = PIXI.Sprite,
   Texture = PIXI.Texture;
-export default class Air {
+
+export default class Ball {
   constructor(scene, model) {
-    this.sprite = new Sprite(Texture.from(airImg));
+    this.sprite = new Sprite(Texture.from(ballImg));
     scene.addChild(this.sprite);
     this.model = model;
   }

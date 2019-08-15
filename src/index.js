@@ -36,7 +36,7 @@ function setup() {
   container.addChild(texture);
   document.body.appendChild(application.view);
 
-  const map = [{ x: 10, y: 10 }, { x: 200, y: 10 }, { x: 400, y: 10 }, { x: 600, y: 10 }];
+  const enemy = [{ x: 10, y: 10 }, { x: 200, y: 10 }, { x: 400, y: 10 }, { x: 600, y: 10 }];
 
   const UPS = 50;
 
@@ -61,7 +61,7 @@ function setup() {
     return new AirModel(data);
   }
 
-  models.push(...map.map(createModel));
+  models.push(...enemy.map(createModel));
 
   const views = [];
 

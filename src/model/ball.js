@@ -1,5 +1,8 @@
 export default class Ball {
-  constructor() {}
+  constructor({ x, y }) {
+    this.x = x;
+    this.y = y;
+  }
 
   update() {}
 }
