@@ -3,6 +3,9 @@ import ShipModel from './model/ship';
 import ShipView from './view/ship';
 import AirModel from './model/air';
 import AirView from './view/air';
+import BallModel from './model/ball';
+import BallView from './view/ball';
+
 import bg from '../res/background.png';
 
 const CreateApp = PIXI.Application,
@@ -56,6 +59,7 @@ function setup() {
   }, 10);
 
   models.push(new ShipModel());
+  models.push(new BallModel({ x: container.width / 2, y: container.height / 2 }));
 
   function createModel(data) {
     return new AirModel(data);
@@ -70,6 +74,8 @@ function setup() {
       return new ShipView(container, model);
     } else if (model instanceof AirModel) {
       return new AirView(container, model);
+    } else if (model instanceof BallModel) {
+      return new BallView(container, model);
     }
   }
 

@@ -1,16 +1,19 @@
-<svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-<circle cx="30" cy="30" r="30" fill="url(#paint0_radial)"/>
-<path d="M53 30C53 42.7025 42.7025 53 30 53C17.2975 53 7 42.7025 7 30C7 17.2975 17.2975 7 30 7C42.7025 7 53 17.2975 53 30Z" fill="url(#paint1_radial)" stroke="#2EBFBD" stroke-width="2"/>
+<svg width="114" height="114" viewBox="0 0 114 114" fill="none" xmlns="http://www.w3.org/2000/svg">
+<circle cx="57" cy="57" r="57" fill="url(#paint0_radial)"/>
+<circle cx="57" cy="57" r="25" fill="url(#paint1_radial)"/>
 <defs>
-<radialGradient id="paint0_radial" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(30 30) rotate(90) scale(30)">
-<stop offset="0.369792" stop-color="#37E6E3" stop-opacity="0.84"/>
-<stop offset="0.729167" stop-color="#37E6E3" stop-opacity="0.84"/>
-<stop offset="1" stop-color="#C4C4C4" stop-opacity="0"/>
+<radialGradient id="paint0_radial" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(57 57) rotate(90) scale(57)">
+<stop offset="0.302083" stop-color="#55DCE6" stop-opacity="0.29"/>
+<stop offset="0.473958" stop-color="#47B7BF" stop-opacity="0.48"/>
+<stop offset="0.703125" stop-color="#3B9AA1" stop-opacity="0.32069"/>
+<stop offset="0.901042" stop-color="#2F7A80" stop-opacity="0.15"/>
+<stop offset="1" stop-color="#878787" stop-opacity="0"/>
 </radialGradient>
-<radialGradient id="paint1_radial" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(30 30) rotate(90) scale(24)">
-<stop offset="0.307292" stop-color="#1F807E"/>
-<stop offset="0.895833" stop-color="#2EBFBD"/>
-<stop offset="1" stop-color="#2EBFBD" stop-opacity="0"/>
+<radialGradient id="paint1_radial" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(57 57) rotate(90) scale(25)">
+<stop offset="0.859375" stop-color="#C9FBFF"/>
+<stop offset="0.895833" stop-color="#5EF4FF"/>
+<stop offset="0.9999" stop-color="#183D40"/>
+<stop offset="1" stop-color="#BFFFF9" stop-opacity="0"/>
 </radialGradient>
 </defs>
 </svg>
