@@ -7,6 +7,7 @@ import BallModel from './model/ball';
 import BallView from './view/ball';
 
 import bg from '../res/background.png';
+import { PLAYGROUND_HEIGHT, PLAYGROUND_WIDTH } from './defs';
 
 const CreateApp = PIXI.Application,
   Container = PIXI.Container,
@@ -14,11 +15,10 @@ const CreateApp = PIXI.Application,
   Loader = PIXI.Loader;
 
 const application = new CreateApp({
-  width: window.innerWidth,
-  height: window.innerHeight,
+  width: PLAYGROUND_WIDTH,
+  height: PLAYGROUND_HEIGHT,
   antialias: true,
-  transparent: false,
-  resolution: window.devicePixelRatio || 1,
+  transparent: false
 });
 
 const container = new Container();
