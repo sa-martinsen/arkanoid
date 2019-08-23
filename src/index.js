@@ -8,6 +8,7 @@ import BallView from './view/ball';
 
 import bg from '../res/background.png';
 import { PLAYGROUND_HEIGHT, PLAYGROUND_WIDTH } from './defs';
+import Collision from './model/collision';
 
 const CreateApp = PIXI.Application,
   Container = PIXI.Container,
@@ -59,10 +60,15 @@ function setup() {
   }, 10);
 
   models.push(new ShipModel());
-  models.push(new BallModel({ x: container.width / 2, y: container.height / 2 }));
+
+  const ball = new BallModel({ x: container.width / 2, y: container.height / 2 });
+  ball.advantages.add( new Collision( ball, models ) );
+  models.push(ball);
 
   function createModel(data) {
-    return new AirModel(data);
+    const res = new AirModel(data);
+    res.advantages.add( new Collision( res, models ) );
+    return res;
   }
 
   models.push(...enemy.map(createModel));

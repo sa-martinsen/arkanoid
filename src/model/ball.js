@@ -1,15 +1,23 @@
 import { BALL_R, PLAYGROUND_HEIGHT, PLAYGROUND_WIDTH } from '../defs';
+import Model from './model';
 
 const {min, max} = Math;
 
-export default class Ball {
+export default class Ball extends Model {
   constructor({ x, y }) {
+    super();
     this.x = x;
     this.y = y;
     this.speed = { x: 45, y: 52 };
   }
 
   update() {
+
+
+    const collision = this.advantages.getByName("collision");
+
+    debugger;
+
 
     this.x +=this.speed.x;
     this.y +=this.speed.y;
