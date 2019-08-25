@@ -1,15 +1,13 @@
 export default class Advantages {
-
-  constructor () {
+  constructor() {
     this.item = [];
   }
 
-  add( advantage ) {
+  add(advantage) {
     this.item.push(advantage);
   }
 
   getByName(type) {
-    return this.item.find( advantage => advantage.type === type );
+    return this.item.find(advantage => advantage.type === type);
   }
-
 }
