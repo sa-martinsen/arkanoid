@@ -1,19 +1,20 @@
 import * as PIXI from 'pixi.js';
+import ballImg from '../../res/ball.svg';
 import View from './view';
-import shipImg from '../../res/ship.svg';
 
 const Sprite = PIXI.Sprite,
   Texture = PIXI.Texture;
 
-export default class Ship extends View {
+export default class Ball extends View {
   constructor(scene, model) {
     super(scene, model);
-    this.sprite = new Sprite(Texture.from(shipImg));
+    this.sprite = new Sprite(Texture.from(ballImg));
     scene.addChild(this.sprite);
+    this.model = model;
   }
 
   render() {
-    this.sprite.y = 900;
+    this.sprite.y = this.model.y;
     this.sprite.x = this.model.x;
   }
 }
