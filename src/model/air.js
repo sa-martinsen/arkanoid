@@ -7,7 +7,7 @@ export default class Air extends Model {
     this.x = x;
     this.y = y;
     this.x1 = x + AIR_WIDTH;
-    this.y1 = y + AIR_WIDTH;
+    this.y1 = y + AIR_HEIGHT;
     this.worldCounter = 0;
   }
 
