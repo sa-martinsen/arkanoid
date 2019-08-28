@@ -19,7 +19,7 @@ const application = new CreateApp({
   width: PLAYGROUND_WIDTH,
   height: PLAYGROUND_HEIGHT,
   antialias: true,
-  transparent: false
+  transparent: false,
 });
 
 const container = new Container();
@@ -42,7 +42,7 @@ function setup() {
 
   const enemy = [{ x: 10, y: 10 }, { x: 200, y: 10 }, { x: 400, y: 10 }, { x: 600, y: 10 }];
 
-  const UPS = 50;
+  const UPS = 5;
 
   const models = [];
 
@@ -62,12 +62,12 @@ function setup() {
   models.push(new ShipModel());
 
   const ball = new BallModel({ x: container.width / 2, y: container.height / 2 });
-  ball.advantages.add( new Collision( ball, models ) );
+  ball.advantages.add(new Collision(ball, models));
   models.push(ball);
 
   function createModel(data) {
     const res = new AirModel(data);
-    res.advantages.add( new Collision( res, models ) );
+    res.advantages.add(new Collision(res, models));
     return res;
   }
 

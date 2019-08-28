@@ -1,5 +1,8 @@
-export default class Ship {
+import Model from './model';
+
+export default class Ship extends Model {
   constructor() {
+    super();
     this.x = 500;
     this.speed = 20;
     this.worldCounter = 0;
@@ -29,6 +32,8 @@ export default class Ship {
   }
 
   update() {
+    const collision = this.advantages.getByName('collision');
+
     if (this.move.direction === 'left' && this.x >= this.container.min) {
       this.x -= this.speed;
     } else if (this.move.direction === 'right' && this.x <= this.container.max) {

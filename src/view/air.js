@@ -13,6 +13,7 @@ export default class Air extends View {
   }
 
   render() {
+    this.sprite.visible = !this.model.destroyed;
     this.sprite.y = this.model.y;
     this.sprite.x = this.model.x;
   }
