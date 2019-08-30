@@ -5,6 +5,7 @@ import AirModel from './model/air';
 import AirView from './view/air';
 import BallModel from './model/ball';
 import BallView from './view/ball';
+import TrailView from './view/trail';
 
 import bg from '../res/background.png';
 import { PLAYGROUND_HEIGHT, PLAYGROUND_WIDTH } from './defs';
@@ -22,28 +23,36 @@ const application = new CreateApp({
   transparent: false,
 });
 
-const container = new Container();
 Loader.shared
   .add('bg', bg)
   .on('progress', loadProgressHandler)
   .load(setup);
 
+const container = new Container();
 application.stage.addChild(container);
 
-function loadProgressHandler(loader, resource) {
+const particleContainer = new PIXI.ParticleContainer(1000, {
+  scale: true,
+  position: true,
+  rotation: false,
+  uvs: false,
+  tint: true,
+});
+application.stage.addChild(particleContainer);
+
+function loadProgressHandler (loader, resource) {
   console.log('loading: ' + resource.url);
   console.log('progress: ' + loader.progress + '%');
 }
 
-function setup() {
+function setup () {
   const texture = new Sprite(Loader.shared.resources.bg.texture);
   container.addChild(texture);
   document.body.appendChild(application.view);
 
   const enemy = [{ x: 10, y: 10 }, { x: 200, y: 10 }, { x: 400, y: 10 }, { x: 600, y: 10 }];
 
-  const UPS = 5;
-
+  const UPS = 60;
   const models = [];
 
   const startttmp = window.performance.now();
@@ -65,7 +74,7 @@ function setup() {
   ball.advantages.add(new Collision(ball, models));
   models.push(ball);
 
-  function createModel(data) {
+  function createModel (data) {
     const res = new AirModel(data);
     res.advantages.add(new Collision(res, models));
     return res;
@@ -75,17 +84,18 @@ function setup() {
 
   const views = [];
 
-  function create(model) {
+  function create (model) {
     if (model instanceof ShipModel) {
       return new ShipView(container, model);
     } else if (model instanceof AirModel) {
       return new AirView(container, model);
     } else if (model instanceof BallModel) {
-      return new BallView(container, model);
+      return new TrailView(particleContainer, ball)
+      // return new BallView(container, model);
     }
   }
 
-  function render() {
+  function render () {
     requestAnimationFrame(() => {
       models.map(model => {
         if (!views.some(view => view.model === model)) {

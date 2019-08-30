@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/artifishional/arkanoid#readme",
   "dependencies": {
+    "pixi-particles": "^4.1.2",
     "pixi.js": "^5.1.1"
   },
   "devDependencies": {
